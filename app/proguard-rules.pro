@@ -1,0 +1,3 @@
+-keep class kotlin.Metadata { *; }
+-dontwarn org.jetbrains.annotations.**
+-dontwarn kotlinx.coroutines.**
