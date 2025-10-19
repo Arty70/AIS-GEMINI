@@ -13,7 +13,7 @@ class ApiConfig @Inject constructor(
     private val prefs: SharedPreferences = context.getSharedPreferences("api_config", Context.MODE_PRIVATE)
     
     companion object {
-        private const val GEMINI_API_KEY = "gemini_api_key"
+        private const val GEMINI_API_KEY = "AIzaSyBPadrw8Hl4D3hY9BmEgHP8hGw0hebKyPQ"
         private const val DEFAULT_API_KEY = "YOUR_GEMINI_API_KEY"
     }
     
