@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Волшебный Гардероб</string>
+    
+    <!-- Navigation -->
+    <string name="nav_home">Главная</string>
+    <string name="nav_camera">Камера</string>
+    <string name="nav_wardrobe">Гардероб</string>
+    <string name="nav_profile">Профиль</string>
+    
+    <!-- Home Screen -->
+    <string name="welcome_title">Добро пожаловать!</string>
+    <string name="welcome_subtitle">Создавайте невероятные образы с помощью ИИ</string>
+    <string name="quick_actions">Быстрые действия</string>
+    <string name="recent_creations">Недавние творения</string>
+    <string name="ai_features">Возможности ИИ</string>
+    <string name="4k_generation">4K Генерация</string>
+    <string name="4k_description">Создавайте фото в высоком разрешении с помощью Gemini AI</string>
+    
+    <!-- Camera Screen -->
+    <string name="camera_title">Камера</string>
+    <string name="select_photo">Выберите фото или сделайте снимок</string>
+    <string name="gallery">Галерея</string>
+    <string name="camera">Камера</string>
+    <string name="select_style">Выберите стиль</string>
+    <string name="generate_outfit">Создать образ с ИИ</string>
+    <string name="generating">ИИ создает ваш образ...</string>
+    
+    <!-- Wardrobe Screen -->
+    <string name="wardrobe_title">Мой Гардероб</string>
+    <string name="search">Поиск</string>
+    <string name="filter">Фильтр</string>
+    <string name="add">Добавить</string>
+    <string name="all">Все</string>
+    <string name="business">Деловой</string>
+    <string name="evening">Вечерний</string>
+    <string name="casual">Повседневный</string>
+    <string name="sport">Спортивный</string>
+    <string name="romantic">Романтичный</string>
+    <string name="creative">Креативный</string>
+    
+    <!-- Profile Screen -->
+    <string name="profile_title">Профиль</string>
+    <string name="settings">Настройки</string>
+    <string name="total_creations">Создано образов: %d</string>
+    <string name="favorites">Избранное</string>
+    <string name="styles">Стили</string>
+    <string name="premium">Premium</string>
+    <string name="premium_description">Разблокируйте все возможности ИИ</string>
+    <string name="try_premium">Попробовать Premium</string>
+    
+    <!-- Result Screen -->
+    <string name="result_title">Результат</string>
+    <string name="back">Назад</string>
+    <string name="share">Поделиться</string>
+    <string name="style">Стиль: %s</string>
+    <string name="quality_4k">Качество: 4K</string>
+    <string name="save">Сохранить</string>
+    <string name="other_styles">Другие стили</string>
+    <string name="enhance_quality">Улучшить качество</string>
+    <string name="enhance_description">Сделайте изображение еще более четким</string>
+    <string name="enhance">Улучшить</string>
+    
+    <!-- Common -->
+    <string name="loading">Загрузка...</string>
+    <string name="error">Ошибка</string>
+    <string name="retry">Повторить</string>
+    <string name="cancel">Отмена</string>
+    <string name="ok">ОК</string>
+    <string name="success">Успешно</string>
+</resources>
