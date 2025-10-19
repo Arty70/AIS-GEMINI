@@ -42,7 +42,7 @@ fun ProfileScreen(
                     )
                 },
                 actions = {
-                    IconButton(onClick = { /* Settings */ }) {
+                    IconButton(onClick = { navController.navigate("settings") }) {
                         Icon(
                             imageVector = Icons.Default.Settings,
                             contentDescription = "Настройки",
@@ -166,7 +166,12 @@ fun ProfileScreen(
             items(getMenuItems()) { item ->
                 MenuItemCard(
                     item = item,
-                    onClick = { /* Handle click */ }
+                    onClick = { 
+                        when (item.title) {
+                            "Настройки" -> navController.navigate("settings")
+                            else -> { /* Handle other clicks */ }
+                        }
+                    }
                 )
             }
 
@@ -342,6 +347,7 @@ data class MenuItem(
 
 fun getMenuItems(): List<MenuItem> {
     return listOf(
+        MenuItem("Настройки", Icons.Default.Settings),
         MenuItem("Мои образы", Icons.Default.Checkroom),
         MenuItem("История", Icons.Default.History),
         MenuItem("Уведомления", Icons.Default.Notifications),

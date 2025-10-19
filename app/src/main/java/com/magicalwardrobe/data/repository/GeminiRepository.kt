@@ -4,6 +4,7 @@ import android.content.Context
 import android.net.Uri
 import com.google.ai.client.generativeai.GenerativeModel
 import com.google.ai.client.generativeai.type.content
+import com.magicalwardrobe.data.config.ApiConfig
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -15,12 +16,15 @@ import javax.inject.Singleton
 
 @Singleton
 class GeminiRepository @Inject constructor(
-    @ApplicationContext private val context: Context
+    @ApplicationContext private val context: Context,
+    private val apiConfig: ApiConfig
 ) {
-    private val generativeModel = GenerativeModel(
-        modelName = "gemini-1.5-pro",
-        apiKey = "YOUR_GEMINI_API_KEY" // Replace with actual API key
-    )
+    private val generativeModel: GenerativeModel by lazy {
+        GenerativeModel(
+            modelName = "gemini-1.5-pro",
+            apiKey = apiConfig.getGeminiApiKey()
+        )
+    }
 
     suspend fun generateOutfit(
         imageUri: Uri,
