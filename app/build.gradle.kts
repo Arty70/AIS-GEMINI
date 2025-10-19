@@ -34,7 +34,8 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.14"
+        // Compose Compiler 1.6.11 is compatible with Kotlin 2.0.x
+        kotlinCompilerExtensionVersion = "1.6.11"
     }
 
     packagingOptions {
