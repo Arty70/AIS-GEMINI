@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Google API Configuration -->
+    <string name="google_api_key">YOUR_GOOGLE_API_KEY</string>
+    <string name="google_cloud_project_id">magical-wardrobe-app</string>
+    <string name="google_drive_folder_name">Magical Wardrobe</string>
+    <string name="google_photos_album_name">Magical Wardrobe AI</string>
+    
+    <!-- Google Services URLs -->
+    <string name="google_ai_studio_url">https://aistudio.google.com/</string>
+    <string name="google_cloud_console_url">https://console.cloud.google.com/</string>
+    <string name="google_photos_api_url">https://developers.google.com/photos</string>
+    
+    <!-- API Scopes -->
+    <string name="google_drive_scope">https://www.googleapis.com/auth/drive.file</string>
+    <string name="google_photos_scope">https://www.googleapis.com/auth/photoslibrary.readonly</string>
+    <string name="google_photos_write_scope">https://www.googleapis.com/auth/photoslibrary.appendonly</string>
+</resources>

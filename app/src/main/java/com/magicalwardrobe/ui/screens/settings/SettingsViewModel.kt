@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.magicalwardrobe.data.config.ApiConfig
 import com.magicalwardrobe.data.repository.ApiKeyValidator
+import com.magicalwardrobe.data.auth.GoogleAuthService
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -14,7 +15,8 @@ import javax.inject.Inject
 @HiltViewModel
 class SettingsViewModel @Inject constructor(
     private val apiConfig: ApiConfig,
-    private val apiKeyValidator: ApiKeyValidator
+    private val apiKeyValidator: ApiKeyValidator,
+    private val googleAuthService: GoogleAuthService
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(SettingsUiState())
@@ -33,9 +35,12 @@ class SettingsViewModel @Inject constructor(
                 ""
             }
             
+            val isGoogleSignedIn = googleAuthService.isSignedIn()
+            
             _uiState.value = _uiState.value.copy(
                 isApiKeyConfigured = isApiKeyConfigured,
                 currentApiKey = currentApiKey,
+                isGoogleSignedIn = isGoogleSignedIn,
                 isLoading = false
             )
         }
@@ -90,6 +95,58 @@ class SettingsViewModel @Inject constructor(
         // In real implementation, save to preferences
     }
 
+    fun signInGoogle() {
+        viewModelScope.launch {
+            try {
+                _uiState.value = _uiState.value.copy(isLoading = true, error = null)
+                val account = googleAuthService.signIn()
+                if (account != null) {
+                    _uiState.value = _uiState.value.copy(
+                        isGoogleSignedIn = true,
+                        isLoading = false
+                    )
+                } else {
+                    _uiState.value = _uiState.value.copy(
+                        isLoading = false,
+                        error = "Не удалось войти в Google аккаунт"
+                    )
+                }
+            } catch (e: Exception) {
+                _uiState.value = _uiState.value.copy(
+                    isLoading = false,
+                    error = e.message ?: "Ошибка входа в Google"
+                )
+            }
+        }
+    }
+
+    fun signOutGoogle() {
+        viewModelScope.launch {
+            try {
+                googleAuthService.signOut()
+                _uiState.value = _uiState.value.copy(
+                    isGoogleSignedIn = false,
+                    googleDriveEnabled = false,
+                    googlePhotosEnabled = false
+                )
+            } catch (e: Exception) {
+                _uiState.value = _uiState.value.copy(
+                    error = e.message ?: "Ошибка выхода из Google"
+                )
+            }
+        }
+    }
+
+    fun setGoogleDrive(enabled: Boolean) {
+        _uiState.value = _uiState.value.copy(googleDriveEnabled = enabled)
+        // In real implementation, save to preferences
+    }
+
+    fun setGooglePhotos(enabled: Boolean) {
+        _uiState.value = _uiState.value.copy(googlePhotosEnabled = enabled)
+        // In real implementation, save to preferences
+    }
+
     fun clearError() {
         _uiState.value = _uiState.value.copy(error = null)
     }
@@ -98,6 +155,9 @@ class SettingsViewModel @Inject constructor(
 data class SettingsUiState(
     val isApiKeyConfigured: Boolean = false,
     val currentApiKey: String = "",
+    val isGoogleSignedIn: Boolean = false,
+    val googleDriveEnabled: Boolean = false,
+    val googlePhotosEnabled: Boolean = false,
     val highQualityEnabled: Boolean = true,
     val autoSaveEnabled: Boolean = true,
     val isLoading: Boolean = true,

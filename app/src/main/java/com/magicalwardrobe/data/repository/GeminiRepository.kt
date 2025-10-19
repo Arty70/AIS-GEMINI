@@ -17,7 +17,9 @@ import javax.inject.Singleton
 @Singleton
 class GeminiRepository @Inject constructor(
     @ApplicationContext private val context: Context,
-    private val apiConfig: ApiConfig
+    private val apiConfig: ApiConfig,
+    private val mlKitRepository: MLKitRepository,
+    private val googleDriveRepository: GoogleDriveRepository
 ) {
     private val generativeModel: GenerativeModel by lazy {
         GenerativeModel(

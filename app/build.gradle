@@ -5,6 +5,7 @@ plugins {
     id 'com.google.dagger.hilt.android'
     id 'kotlin-kapt'
     id 'kotlin-parcelize'
+    id 'com.google.firebase.crashlytics'
 }
 
 android {
@@ -77,12 +78,35 @@ dependencies {
     implementation 'androidx.hilt:hilt-navigation-compose:1.1.0'
     kapt 'com.google.dagger:hilt-compiler:2.48'
     
-    // Gemini AI
+    // Google AI & Gemini
     implementation 'com.google.ai.client.generativeai:generativeai:0.2.2'
-    implementation 'com.google.ai.client.generativeai:generativeai:0.2.2'
-    
-    // Google AI SDK
     implementation 'com.google.generativeai:generativeai:0.2.2'
+    
+    // Google Play Services
+    implementation 'com.google.android.gms:play-services-auth:20.7.0'
+    implementation 'com.google.android.gms:play-services-location:21.0.1'
+    implementation 'com.google.android.gms:play-services-maps:18.2.0'
+    
+    // Google Cloud Storage
+    implementation 'com.google.cloud:google-cloud-storage:2.23.0'
+    
+    // Google API Client
+    implementation 'com.google.api-client:google-api-client:2.2.0'
+    implementation 'com.google.api-client:google-api-client-android:2.2.0'
+    implementation 'com.google.apis:google-api-services-drive:v3-rev20220815-2.0.0'
+    
+    // Google Photos API
+    implementation 'com.google.photos.library:google-photos-library-client:1.7.0'
+    
+    // Google ML Kit
+    implementation 'com.google.mlkit:image-labeling:17.0.8'
+    implementation 'com.google.mlkit:face-detection:16.1.6'
+    implementation 'com.google.mlkit:object-detection:17.0.1'
+    
+    // Google Firebase (optional)
+    implementation platform('com.google.firebase:firebase-bom:32.7.0')
+    implementation 'com.google.firebase:firebase-analytics'
+    implementation 'com.google.firebase:firebase-crashlytics'
     
     // Image processing
     implementation 'io.coil-kt:coil-compose:2.5.0'

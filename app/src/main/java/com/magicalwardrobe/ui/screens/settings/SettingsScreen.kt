@@ -23,6 +23,7 @@ import androidx.navigation.NavController
 import com.magicalwardrobe.ui.components.BottomNavigationBar
 import com.magicalwardrobe.ui.components.GradientButton
 import com.magicalwardrobe.ui.theme.*
+import com.magicalwardrobe.data.auth.GoogleAuthService
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -228,6 +229,144 @@ fun SettingsScreen(
                             modifier = Modifier.fillMaxWidth()
                         )
                     }
+                }
+            }
+
+            // Google Services Section
+            Text(
+                text = "Google Сервисы",
+                style = MaterialTheme.typography.titleLarge,
+                fontWeight = FontWeight.SemiBold,
+                color = MaterialTheme.colorScheme.onBackground
+            )
+
+            // Google Sign In
+            Card(
+                modifier = Modifier.fillMaxWidth(),
+                shape = RoundedCornerShape(12.dp),
+                colors = CardDefaults.cardColors(
+                    containerColor = MaterialTheme.colorScheme.surface
+                )
+            ) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.AccountCircle,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.primary,
+                        modifier = Modifier.size(24.dp)
+                    )
+                    Spacer(modifier = Modifier.width(16.dp))
+                    Column(modifier = Modifier.weight(1f)) {
+                        Text(
+                            text = "Google Аккаунт",
+                            style = MaterialTheme.typography.titleMedium,
+                            fontWeight = FontWeight.SemiBold
+                        )
+                        Text(
+                            text = if (uiState.isGoogleSignedIn) "Подключен" else "Не подключен",
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = if (uiState.isGoogleSignedIn) Color.Green else Color.Orange
+                        )
+                    }
+                    GradientButton(
+                        text = if (uiState.isGoogleSignedIn) "Отключить" else "Подключить",
+                        onClick = { 
+                            if (uiState.isGoogleSignedIn) {
+                                viewModel.signOutGoogle()
+                            } else {
+                                viewModel.signInGoogle()
+                            }
+                        },
+                        gradient = if (uiState.isGoogleSignedIn) 
+                            listOf(Color.Red, Color.Red.copy(alpha = 0.8f)) 
+                        else 
+                            listOf(MagicalBlue, MagicalPurple)
+                    )
+                }
+            }
+
+            // Google Drive
+            Card(
+                modifier = Modifier.fillMaxWidth(),
+                shape = RoundedCornerShape(12.dp),
+                colors = CardDefaults.cardColors(
+                    containerColor = MaterialTheme.colorScheme.surface
+                )
+            ) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.CloudUpload,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.primary,
+                        modifier = Modifier.size(24.dp)
+                    )
+                    Spacer(modifier = Modifier.width(16.dp))
+                    Column(modifier = Modifier.weight(1f)) {
+                        Text(
+                            text = "Google Drive",
+                            style = MaterialTheme.typography.titleMedium,
+                            fontWeight = FontWeight.SemiBold
+                        )
+                        Text(
+                            text = "Синхронизация с облаком",
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
+                        )
+                    }
+                    Switch(
+                        checked = uiState.googleDriveEnabled,
+                        onCheckedChange = { viewModel.setGoogleDrive(it) }
+                    )
+                }
+            }
+
+            // Google Photos
+            Card(
+                modifier = Modifier.fillMaxWidth(),
+                shape = RoundedCornerShape(12.dp),
+                colors = CardDefaults.cardColors(
+                    containerColor = MaterialTheme.colorScheme.surface
+                )
+            ) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.PhotoLibrary,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.primary,
+                        modifier = Modifier.size(24.dp)
+                    )
+                    Spacer(modifier = Modifier.width(16.dp))
+                    Column(modifier = Modifier.weight(1f)) {
+                        Text(
+                            text = "Google Фото",
+                            style = MaterialTheme.typography.titleMedium,
+                            fontWeight = FontWeight.SemiBold
+                        )
+                        Text(
+                            text = "Доступ к галерее",
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
+                        )
+                    }
+                    Switch(
+                        checked = uiState.googlePhotosEnabled,
+                        onCheckedChange = { viewModel.setGooglePhotos(it) }
+                    )
                 }
             }
 
